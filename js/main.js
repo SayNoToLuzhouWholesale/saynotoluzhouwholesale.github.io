@@ -133,10 +133,12 @@ if (pdfList) {
 }
 
 // 首頁橫幅大圖點擊可開啟 modal
-const bannerImg = document.querySelector('.banner-img');
-if (bannerImg) {
-    bannerImg.addEventListener('click', function() {
-        openImageModal(this.src);
+const bannerImgs = document.querySelectorAll('.banner-img');
+if (bannerImgs.length > 0) {
+    bannerImgs.forEach(bannerImg => {
+        bannerImg.addEventListener('click', function() {
+            openImageModal(this.src);
+        });
     });
 }
 

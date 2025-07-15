@@ -10,6 +10,19 @@
     --box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* 陰影效果 */
 }
 
+/* 視覺隱藏類別 - 對搜尋引擎和螢幕閱讀器可見，但視覺上隱藏 */
+.visually-hidden {
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    padding: 0 !important;
+    margin: -1px !important;
+    overflow: hidden !important;
+    clip: rect(0, 0, 0, 0) !important;
+    white-space: nowrap !important;
+    border: 0 !important;
+}
+
 body, html {
     font-family: "微軟正黑體", "Microsoft JhengHei", Arial, sans-serif;
     margin: 0;
@@ -122,28 +135,59 @@ section {
 .top-banner {
     width: 100vw;
     max-width: 100vw;
-    height: 220px;
+    height: 300px;
     display: flex;
     align-items: center;
     justify-content: center;
     margin: 0 auto 1.5rem auto;
     overflow: hidden;
-    background: #eee;
+    gap: 0; /* 移除圖片間隙 */
 }
 .banner-img {
-    width: 100%;
     height: 100%;
     object-fit: contain;
     object-position: center;
     display: block;
     cursor: pointer;
-    border-radius: 0 0 12px 12px;
     box-shadow: 0 4px 16px rgba(0,0,0,0.08);
     background: #fff;
+    border-radius: 0; /* 移除圓角以避免間隙 */
+}
+.banner-img:first-child {
+    border-radius: 0 0 0 12px; /* 左邊圖片只有左下角圓角 */
+}
+.banner-img:last-child {
+    border-radius: 0 0 12px 0; /* 右邊圖片只有右下角圓角 */
 }
 @media (max-width: 600px) {
     .top-banner {
         height: 120px;
+    }
+}
+
+/* header banner 圖片置中與背景調整（優化版） */
+.header-banner-img-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(180deg, #333 0%, #e63946 100%);
+    border-radius: 0 0 24px 24px;
+    margin-bottom: 0.5rem;
+    min-height: 40px;
+}
+.header-banner-img-wrapper .banner-img {
+    max-height: 100px;
+    width: 100%;
+    height: auto;
+    box-shadow: 0 8px 32px rgba(230,57,70,0.18), 0 2px 8px rgba(0,0,0,0.12);
+    background: transparent;
+    border-radius: 0 0 18px 18px;
+    margin: 0 auto;
+    display: block;
+}
+@media (max-width: 600px) {
+    .header-banner-img-wrapper .banner-img {
+        max-width: 98vw;
     }
 }
 
